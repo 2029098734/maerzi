@@ -6,7 +6,17 @@
 
 have cl[9];
 
-int soduku[9][9] ={0};
+int soduku[9][9] = {
+	{0,0,0,0,0,0,8,1,3},
+	{0,1,0,6,7,0,2,0,9},
+	{2,0,9,0,0,3,6,0,5},
+	{0,6,7,9,0,4,3,0,0},
+	{3,8,1,5,6,0,0,0,0},
+	{9,2,0,3,8,0,5,6,7},
+	{0,0,6,0,9,2,1,0,0},
+	{1,3,0,7,5,6,4,0,0},
+	{0,9,2,0,0,0,0,0,6},
+	};
 int check[10] = {0};
 
 
@@ -23,11 +33,12 @@ void row_col_have(void)
 	}
 }
 
-void do_with_number(int number)
+int do_with_number(int number)
 {
 	int block[9] = {0};
 	int row_pos[9] = {0};
 	int col_pos[9] = {0};
+	int ret = 0;
 	for(int i = 0;i < 9;i++){
 		for(int j = 0;j < 9;j++){
 			if(soduku[i][j] == 0 && cl[number - 1].blocks[(i/3)*3 + (j/3)] == 0 &&\
@@ -41,8 +52,10 @@ void do_with_number(int number)
 	for(int i = 0;i < 9;i++){
 		if(block[i] == 1){
 			soduku[row_pos[i]][col_pos[i]] = number;
+			ret = 1; 
 		}
 	}
+	return ret;
 }
 
 int check_one_block(int *block)
@@ -125,4 +138,16 @@ int check_col(void)
 	return check_one_block(&soduku[0][0]) && check_one_block(&soduku[0][1]) && check_one_block(&soduku[0][2])  \
 			&& check_one_block(&soduku[0][3]) && check_one_block(&soduku[0][4]) && check_one_block(&soduku[0][5])\
 			 && check_one_block(&soduku[0][6]) && check_one_block(&soduku[0][7]) && check_one_block(&soduku[0][8]);
+}
+
+int check_zero(void)
+{
+	for(int i = 0;i < 9;i++){
+		for(int j = 0;j < 9;j++){
+			if(soduku[i][j] == 0 ){
+				   return 0;
+			}
+		}
+	}
+	return 1;
 }

@@ -3,7 +3,7 @@
 
 void row_col_have(void);
 
-void do_with_number(int number);
+int do_with_number(int number);
 
 int check_one_block(int *block);
 
@@ -16,6 +16,8 @@ int check_row(void);
 int check_one_col(int *col);
 
 int check_col(void);
+
+int check_zero(void);
 
 typedef struct have_number{
 	int row[9];
