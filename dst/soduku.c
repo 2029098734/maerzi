@@ -25,8 +25,8 @@ void row_col_have(void)
 	for(int i = 0;i < 9;i++){
 		for(int j = 0;j < 9;j++){
 			if(soduku[i][j] != 0){
-				cl[soduku[i][j] - 1].row[i - 1] = 1;
-				cl[soduku[i][j] - 1].col[j - 1] = 1;
+				cl[soduku[i][j] - 1].row[i] = 1;
+				cl[soduku[i][j] - 1].col[j] = 1;
 				cl[soduku[i][j] - 1].blocks[(i/3)*3 + (j/3)] = 1;
 			}
 		}
@@ -42,7 +42,7 @@ int do_with_number(int number)
 	for(int i = 0;i < 9;i++){
 		for(int j = 0;j < 9;j++){
 			if(soduku[i][j] == 0 && cl[number - 1].blocks[(i/3)*3 + (j/3)] == 0 &&\
-			   cl[number - 1].row[i] == 0 && cl[number - 1].col[i] == 0){
+			   cl[number - 1].row[i] == 0 && cl[number - 1].col[j] == 0){
 				   block[(i/3)*3 + (j/3)] ++;
 				   row_pos[(i/3)*3 + (j/3)] = i;
 				   col_pos[(i/3)*3 + (j/3)] = j;
